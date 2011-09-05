@@ -1,0 +1,53 @@
+<?php
+echo $this->doctype();
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<?php
+		$this->headTitle('Powering your website with realtime data')->setSeparator(' - ');
+		
+		$frontRequest = Zend_Controller_Front::getInstance()->getRequest();
+		$controller = $frontRequest->getParam("controller");
+		$action = $frontRequest->getParam("action");
+		$module = $frontRequest->getModuleName();
+		
+		$this->headMeta()->prependHttpEquiv('X-UA-Compatible', 'IE=edge');
+
+		$this->headLink()->headLink(array('rel' => 'shortcut icon', 'href' => '/resources/image/favicon.ico'), 'APPEND');
+		$this->headLink()->headLink(array('rel' => 'favicon', 'href' => '/resources/image/favicon.ico'), 'APPEND');
+		
+	$this->headScript()->captureStart('APPEND');
+	?>
+		$(function() {
+			<?php echo $this->placeholder('onready'); ?>
+		});
+	<?php
+	$this->headScript()->captureEnd();
+		
+	$this->headScript()->prependFile('/resources/javascript/jquery-ui/js/jquery-1.8.16.custom.min.js', 'text/javascript');
+	$this->headScript()->prependFile('/resources/javascript/jquery/js/jquery-1.6.2.min.js', 'text/javascript');
+
+	$this->headLink()->appendStylesheet('/resources/stylesheet/smoothness/jquery-ui-1.8.15.custom.css', 'screen, print');
+	$this->headLink()->appendStylesheet('/resources/stylesheet/main.css', 'screen, print');
+
+	echo $this->headTitle();
+	echo $this->headMeta();
+	echo $this->headLink();
+	echo $this->headStyle();
+	echo $this->headScript();
+	?>
+	</head>
+	<body id="<?php echo $module . '_' . $controller . '_' . $action; ?>">
+		<div id="main" class="wrapper">
+			<div id="header">
+				<h1>Powering your website with realtime data</h1>
+			</div>
+			<div id="content" class="column">
+				<?php echo $this->layout()->content; ?>
+			</div>
+			<div id="footer">
+			</div>
+			<div class="developedBy">developed by <a href="http://www.becoded.be" target="_blank">be.coded</a></div>
+		</div>
+	</body>
+</html>
