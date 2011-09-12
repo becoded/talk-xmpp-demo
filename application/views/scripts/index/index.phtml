@@ -1,0 +1,10 @@
+<h2>Overview examples</h2>
+<ul>
+	<?php 
+	foreach ($this->examples as $example) {
+		echo sprintf('<li><a href="%1$s">%2$s</a></li>', 
+			$this->url($example['url'], null, true), 
+			$example['title']);
+	}
+	?>
+</ul>

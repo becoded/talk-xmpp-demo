@@ -1,0 +1,29 @@
+<?php 
+$this->headScript()->appendFile('/resources/javascript/strophejs/strophe.min.js', 'text/javascript');
+$this->headScript()->appendFile('/resources/javascript/example/helloWorld.js', 'text/javascript');
+$options = array(
+	'service' => array(
+		'url' => '/bind',
+		'domain' => 'demo'
+	)
+);
+$this->placeholder('onready')->captureStart('APPEND');
+?>
+var helloWorldObj = new HelloWord(<?php echo json_encode($options);?>);
+<?php 
+$this->placeholder('onready')->captureEnd();
+?>
+<h2>Hello world</h2>
+<div id="logContainer">
+	<dl id="log" class="clearfix"></dl>
+</div>
+<div id="loginDialog" title="Please provide your credentials" class="hidden">
+	<form action="#">
+		<dl class="form">
+			<dt><label for="username">Username</label></dt>
+			<dd><input type="text" name="username" id="username" value="" /></dd>
+			<dt><label for="password">Password</label></dt>
+			<dd><input type="password" name="password" id="password" value="" /></dd>
+		</dl>
+	</form>
+</div>
