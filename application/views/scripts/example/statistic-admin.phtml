@@ -1,0 +1,18 @@
+<?php 
+$this->headScript()->appendFile('/resources/javascript/example/statisticAdmin.js', 'text/javascript');
+
+$this->placeholder('onready')->captureStart('APPEND');
+?>
+var statisticAdminObj = new StatisticAdmin();
+<?php 
+$this->placeholder('onready')->captureEnd();
+?>
+<h2>Statistic admin</h2>
+<ul>
+	<li><a href="#Firefox">Firefox</a></li>
+	<li><a href="#IE">IE</a></li>
+	<li><a href="#Chrome">Chrome</a></li>
+	<li><a href="#Safari">Safari</a></li>
+	<li><a href="#Opera">Opera</a></li>
+	<li><a href="#Others">Others</a></li>
+</ul>

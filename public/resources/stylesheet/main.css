@@ -106,8 +106,10 @@ form dd {
 	}
 
 	textarea {
+		font-size: 1em;
 		width: 100%;
 		border: 1px solid #bbbbbb;
+		height:60px;
 	}
 /* Form end */
 
@@ -123,35 +125,38 @@ a:active {color:#4c4c4c;}
 /* layout start */
 html {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 28px;
 	color: #4c4c4c;
 	overflow-y: scroll;
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 1.7em;
 }
 h2 {
-	font-size: 1.8em;
+	font-size: 1.5em;
 }
 h3 {
-	font-size: 1.6em;
+	font-size: 1.3em;
 }
 h4 {
-	font-size: 1.4em;
+	font-size: 1.1em;
 }
-h5 {
-	font-size: 1.2em;
-}
+
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 	margin-bottom: 10px;
+}
+
+p {
+	margin-bottom:15px;
 }
 
 #main {
 	width:976px;
 	margin: 0 auto;
 }
+
 #header {
 	text-align: center;
 	padding: 20px;
@@ -182,17 +187,57 @@ h1, h2, h3, h4, h5, h6 {
 /* layout end */
 /* hello world start */
 #logContainer {
-	height: 200px;
+	height: 100px;
 	border: 1px solid #aaa;
 	overflow-y: scroll;
 }
 #log dt {
-	width: 10%;
+	width: 20%;
 	float:left;
 	font-style: italic;
 }
 #log dd {
-	width: 90%;
+	width: 80%;
 	float:left;
 }
 /* hello world end */
+
+/* ping - pong start */
+#default_example_ping-pong #logContainer{
+	height: 400px;
+}
+/* ping - pong end */
+
+/* support start */
+
+#chatContainer {
+	height: 305px;
+	border: 1px solid #aaa;
+	padding:5px;
+	margin-bottom: 20px;
+}
+#chat {
+	overflow-y: scroll;
+	height: 175px;
+	border: 1px solid #aaa;
+	margin-bottom: 15px;
+}
+#chat dt {
+	width: 25%;
+	float:left;
+	font-style: italic;
+	margin-bottom:10px;
+}
+#chat dd {
+	width: 75%;
+	float:left;
+	margin-bottom:10px;
+}
+/* support end */
+
+/* statistic start */
+#default_example_statistic-admin li {
+	display:inline;
+	padding:0 10px;
+}
+/* statistic end */

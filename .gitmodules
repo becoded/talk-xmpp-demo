@@ -1,3 +1,6 @@
 [submodule "externals/xmpphp"]
 	path = externals/xmpphp
 	url = git://github.com/cweiske/xmpphp.git
+[submodule "externals/jaxl"]
+	path = externals/jaxl
+	url = git://github.com/abhinavsingh/JAXL.git

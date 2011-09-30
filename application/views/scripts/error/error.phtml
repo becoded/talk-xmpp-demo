@@ -9,6 +9,14 @@
   <h2><?php echo $this->message ?></h2>
 
   <?php if (isset($this->exception)): ?>
+  <h3>Filename:</h3>
+  <p>
+      <b>File:</b> <?php echo $this->exception->getFile() ?>
+  </p>
+  <h3>Line:</h3>
+  <p>
+      <b>Linenumber:</b> <?php echo $this->exception->getLine() ?>
+  </p>
   
   <h3>Exception information:</h3>
   <p>

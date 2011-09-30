@@ -1,0 +1,21 @@
+<?php 
+$this->headScript()->appendFile('/resources/javascript/strophejs/strophe.min.js', 'text/javascript');
+$this->headScript()->appendFile('/resources/javascript/example/message.js', 'text/javascript');
+$options = array(
+	'service' => array(
+		'url' => '/bind',
+		'domain' => $this->xmppConfig['domain'],
+		'username' => 'demo1',
+		'password' => 'demo1'
+	)
+);
+$this->placeholder('onready')->captureStart('APPEND');
+?>
+var messageObj = new Message(<?php echo json_encode($options);?>);
+<?php 
+$this->placeholder('onready')->captureEnd();
+?>
+<h2>Send message with javascript</h2>
+<div id="logContainer">
+	<dl id="log" class="clearfix"></dl>
+</div>

@@ -1,0 +1,28 @@
+<?php 
+$this->headScript()->appendFile('/resources/javascript/strophejs/strophe.min.js', 'text/javascript');
+$this->headScript()->appendFile('/resources/javascript/example/support.js', 'text/javascript');
+$options = array(
+	'service' => array(
+		'url' => '/bind',
+		'domain' => $this->xmppConfig['domain'],
+		'username' => 'demo1',
+		'password' => 'demo1'
+	)
+);
+$this->placeholder('onready')->captureStart('APPEND');
+?>
+var supportObj = new Support(<?php echo json_encode($options);?>);
+<?php 
+$this->placeholder('onready')->captureEnd();
+?>
+<h2>Support</h2>
+<div id="chatContainer">
+	<dl id="chat" class="clearfix"></dl>
+	<label for="message">Your message:</label>
+	<textarea id="message" name="message"></textarea>
+	<button type="button" name="sendMessage" id="sendMessage">Send</button>
+</div>
+<h3>Log</h3>
+<div id="logContainer">
+	<dl id="log" class="clearfix"></dl>
+</div>

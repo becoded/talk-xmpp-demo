@@ -1,0 +1,9 @@
+<h2>Send message from PHP</h2>
+<?php 
+if  ($this->sent) {
+	echo '<p>Message sent.</p>';
+} else {
+	echo '<p>Message not sent.</p>';
+}
+
+echo '<pre>'.$this->log.'</pre>';

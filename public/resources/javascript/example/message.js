@@ -1,54 +1,22 @@
-HelloWord = function (options) {
+Message = function (options) {
 	this.options = options;
-	this.connection = null;
 	
 	this.init = function ()
 	{
 		var me = this;
 		$(function() {
-			me.initDialog();
+			console.time("profile connect and send");
+			me.initConnection();
 		});
 	};
 
-	this.initDialog = function ()
-	{
-		var me = this;
-		$('#loginDialog').dialog({
-			resizable: false,
-			autoOpen: true,
-			height:200,
-			modal: true,
-			buttons: {
-				Connect: function() {
-					var username=$('#username').val();
-					var password=$('#password').val();
-					
-					if (username.length > 0 && password.length > 0) {
-						me.options.service.username = username;
-						me.options.service.password = password;
-						$('#password').val('');
-						$( this ).dialog( "close" );
-						
-						me.initConnection();
-						
-					} else {
-						alert('Please provide a username and password');
-					}
-				},
-				Cancel: function() {
-					$( this ).dialog( "close" );
-				}
-			}
-		});
-	};
-	
 	this.initConnection = function ()
 	{
 		var me = this;
 		
 		me.connection = new Strophe.Connection(me.options.service.url);
 		
-		var jid = me.options.service.username+'@'+me.options.service.domain;
+		var jid = me.options.service.username + '@' + me.options.service.domain;
 
 		me.connection.connect(
 			jid, 
@@ -64,42 +32,25 @@ HelloWord = function (options) {
 		me.logStatus(status);
 	
 		if (status == Strophe.Status.CONNECTED) {
-			me.connection.addHandler(
-				function(msg) {								//(Function) handler	The user callback.
-					return me.handleHelloWorld(msg); 
-				}, 
-				null, 										//(String) ns	The namespace to match.
-				'iq', 										//(String) name	The stanza name to match.
-				null, 										//(String) type	The stanza type attribute to match.
-				'helloWorld1');								//(String) id	The stanza id attribute to match.
-			
-			me.sendHelloWorld(Strophe.getDomainFromJid(me.connection.jid));
+			me.sendHelloWorld();
 		}
+		
 	};
 	
-	this.sendHelloWorld = function (to)
+	this.sendHelloWorld = function ()
 	{
 		var me = this;
 		
-		var iq = $iq({
-			to	: to,
-			type : 'get',
-			id : 'helloWorld1'
-			}).c('HelloWorld', {xmlns: 'urn:xmpp:ping'});
+		var msg = $msg({
+			to : 'support@demo',
+			type : "chat"
+			}).c('body').t('Hello world from Strophe');
 		
-		me.log('Sending stanza helloWorld to "'+ to +'".');
-		me.connection.send(iq);
-	};
-	
-	this.handleHelloWorld = function (msg)
-	{
-		var me = this;
-		
-		var objMsg = $(msg);
-		var from = objMsg.attr('from');
-		
-		me.log('Receiving ' + objMsg.attr('type') + ' from "' + objMsg.attr('from') + '" with id "' + objMsg.attr('id') + '"');
-		me.connection.disconnect();
+		me.connection.send(msg);
+		console.timeEnd("profile connect and send");
+		setTimeout(function () {
+			me.connection.disconnect();
+		}, 500);
 	};
 	
 	this.logStatus = function (status)
